@@ -1,15 +1,14 @@
-package web.controller;
+package com.example.pp_3_1_2.controller;
 
 
+import com.example.pp_3_1_2.model.User;
+import com.example.pp_3_1_2.servise.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import web.model.User;
-import web.servise.UserService;
 
-import javax.validation.Valid;
 
 
 @Controller
@@ -40,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String create(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    public String create( @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "create";
         } else {
@@ -55,8 +54,8 @@ public class UserController {
         return "edit";
     }
 
-    @PostMapping("/edit")
-    public String update(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    @PatchMapping("/edit")
+    public String update( @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "edit";
         } else {
@@ -65,7 +64,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping ("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
         userService.removeUser(id);
         return "redirect:/";

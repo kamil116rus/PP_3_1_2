@@ -1,6 +1,7 @@
-package web.servise;
+package com.example.pp_3_1_2.servise;
 
-import web.model.User;
+
+import com.example.pp_3_1_2.model.User;
 
 import java.util.List;
 
